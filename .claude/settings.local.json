@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "WebFetch(domain:demillus.vestemuitomelhor.com.br)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/05/060360-86-050360-86.jpg\" -o \"sutia-magenta.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/05/060360-27-050360-27.jpg\" -o \"sutia-preto.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/05/060360-55-050360-55.jpg\" -o \"sutia-bege.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/05/060360-74-050360-74.jpg\" -o \"sutia-azul.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/02/030807_27_051813_27_1163-300x300.jpg\" -o \"camisola.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/02/063516_98_053331_98_0336-300x300.jpg\" -o \"sutia-rendado.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/01/064505_14_051905_14_0592-300x300.jpg\" -o \"calcinha.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2024/10/plus-size-capa.webp\" -o \"plus-size.webp\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2024/06/001-734x1024.jpg\" -o \"campanha1.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2024/06/001-1-734x1024.jpg\" -o \"campanha2.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2024/10/capa-cha-lingerie.jpg\" -o \"cha-lingerie.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/02/030807_27_051813_27_1163.jpg\" -o \"camisola-full.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/02/030807_27_051813_27_1177-2.jpg\" -o \"camisola2.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/02/030807_20_F.jpg\" -o \"camisola3.jpg\")",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/09/061322_27_000322_27_1003_Ftn.jpg\" -o \"fitness-top.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/06/061029_27_000147_27_0777.jpg\" -o \"fitness-legging-preta.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/06/061029_23_-000147_23_2303.jpg\" -o \"fitness-legging-verde.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/12/090903_27_.jpg\" -o \"zeus-boxer-preto.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/12/090903_50_4.jpg\" -o \"zeus-boxer-vinho.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2025/12/090903_85_1.jpg\" -o \"zeus-boxer-azul.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/01/065543_43_051543_4367786.jpg\" -o \"sutia-argent.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/01/064083_18_056083_18_0023.jpg\" -o \"sutia-sonata-vermelho.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/01/064083_23_056083_23_0008.jpg\" -o \"sutia-sonata-verde.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/01/030747_9868938.jpg\" -o \"camisola-ferveur.jpg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/01/030747_76_051813_76_1078.jpg\" -o \"camisola-ferveur2.jpg\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Leonardo Buzzo\\irenoca-demillus\\src"
+    ]
+  }
+}

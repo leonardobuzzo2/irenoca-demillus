@@ -1,0 +1,45 @@
+.bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 400;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.12);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .btnCatalogo,
+  .btnWhatsapp {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: filter 0.2s;
+  }
+
+  .btnCatalogo:active,
+  .btnWhatsapp:active {
+    filter: brightness(0.9);
+  }
+
+  .btnCatalogo {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .btnWhatsapp {
+    background-color: #25D366;
+    color: var(--color-white);
+  }
+}

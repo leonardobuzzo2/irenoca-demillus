@@ -1,0 +1,15 @@
+:root {
+  --color-primary:       #C22E78;
+  --color-primary-light: #E8729A;
+  --color-primary-soft:  #FCE4EC;
+  --color-accent:        #D4AF37;
+  --color-dark:          #1A1A2E;
+  --color-gray:          #6B7280;
+  --color-white:         #FFFFFF;
+  --color-bg:            #FFF8FA;
+
+  --radius-card:    12px;
+  --radius-button:  50px;
+  --shadow-default: 0 4px 20px rgba(194, 46, 120, 0.12);
+  --section-padding: 80px 0;
+}

@@ -1,0 +1,136 @@
+.wrapper {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+/* FAB button */
+.fab {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #25D366;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.65);
+}
+
+.icon {
+  color: white;
+  font-size: 1.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pulse ring animation */
+.pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: #25D366;
+  animation: pulse 2.5s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Tooltip card */
+.tooltip {
+  background-color: var(--color-white);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+  padding: 1.25rem 1.5rem;
+  max-width: 240px;
+  position: relative;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closeTooltip {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-gray);
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.closeTooltip:hover {
+  color: var(--color-dark);
+}
+
+.tooltip p {
+  font-size: 0.9rem;
+  color: var(--color-dark);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  padding-right: 1rem;
+}
+
+.tooltipBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #25D366;
+  color: white;
+  padding: 0.625rem 1.125rem;
+  border-radius: var(--radius-button);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.tooltipBtn:hover {
+  background-color: #1db954;
+}
+
+@media (max-width: 768px) {
+  /* MobileCTA bar handles WhatsApp on mobile */
+  .wrapper {
+    display: none;
+  }
+}
