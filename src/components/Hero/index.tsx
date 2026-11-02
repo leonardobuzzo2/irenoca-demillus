@@ -18,13 +18,13 @@ const slides: Slide[] = [
   },
   {
     src: '/images/campanha1.jpg',
-    position: 'center 15%',
+    position: 'left 20%',
     headline: <>Lingerie que abraça<br />cada curva com delicadeza.</>,
     subtitle: 'Porque toda mulher merece se sentir especial — por dentro e por fora',
   },
   {
     src: '/images/campanha2.jpg',
-    position: 'center 15%',
+    position: 'right 20%',
     headline: <>Conforto, estilo<br />e feminilidade em cada peça.</>,
     subtitle: 'Escolhidas com carinho para acompanhar você em todos os momentos',
   },
