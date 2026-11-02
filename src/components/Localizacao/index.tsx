@@ -65,6 +65,9 @@ const Localizacao = () => {
       <div className={styles.inner}>
         <span className={styles.eyebrow}>Atendimento 100% online</span>
         <h2 className={styles.title}>Como nos Encontrar</h2>
+        <p className={styles.lead}>
+          Seu espaço DeMillus continua com você! Agora nosso atendimento é 100% online, com todo o carinho e atendimento personalizado que você merece. Produtos à pronta entrega e pedidos semanais — é só chamar no WhatsApp!
+        </p>
 
         <div className={styles.groups}>
           {groups.map(group => (

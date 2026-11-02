@@ -1,11 +1,33 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, type ReactNode } from 'react';
 import { FaWhatsapp, FaBookOpen, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './styles.module.css';
 
-const slides = [
-  { src: '/banner-loja.jpg', position: 'center' },
-  { src: '/images/campanha1.jpg', position: 'center 15%' },
-  { src: '/images/campanha2.jpg', position: 'center 15%' },
+type Slide = {
+  src: string;
+  position: string;
+  headline: ReactNode;
+  subtitle: string;
+};
+
+const slides: Slide[] = [
+  {
+    src: '/banner-loja.jpg',
+    position: 'center',
+    headline: <>Uma história de carinho<br />que continua.</>,
+    subtitle: 'Agora, mais perto de você, onde estiver',
+  },
+  {
+    src: '/images/campanha1.jpg',
+    position: 'center 15%',
+    headline: <>Lingerie que abraça<br />cada curva com delicadeza.</>,
+    subtitle: 'Porque toda mulher merece se sentir especial — por dentro e por fora',
+  },
+  {
+    src: '/images/campanha2.jpg',
+    position: 'center 15%',
+    headline: <>Conforto, estilo<br />e feminilidade em cada peça.</>,
+    subtitle: 'Escolhidas com carinho para acompanhar você em todos os momentos',
+  },
 ];
 
 const Hero = () => {
@@ -52,11 +74,11 @@ const Hero = () => {
       <div className={styles.overlay} />
 
       <div className={styles.content}>
-        <h1 className={styles.title}>
-          Uma história de carinho que continua.<br />Agora, mais perto de você, onde estiver
+        <h1 key={`h-${current}`} className={styles.title}>
+          {slides[current].headline}
         </h1>
-        <p className={styles.subtitle}>
-          Lingerie e roupas íntimas selecionadas com cuidado para você
+        <p key={`s-${current}`} className={styles.subtitle}>
+          {slides[current].subtitle}
         </p>
         <div className={styles.ctas}>
           <a href="#catalogo" className={styles.btnPrimary}>

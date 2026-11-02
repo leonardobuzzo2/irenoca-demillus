@@ -37,8 +37,7 @@ const Footer = () => {
             <a href="#galeria">Galeria</a>
             <a href="#catalogo">Catálogo</a>
             <a href="#videos">Vídeos</a>
-            <a href="#localizacao">Localização</a>
-            <a href="#contato">Contato</a>
+            <a href="#localizacao">Contato</a>
           </nav>
         </div>
 

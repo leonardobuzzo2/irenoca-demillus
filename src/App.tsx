@@ -8,7 +8,6 @@ import Catalogo from './components/Catalogo';
 import Videos from './components/Videos';
 import Depoimentos from './components/Depoimentos';
 import Localizacao from './components/Localizacao';
-import Contato from './components/Contato';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import MobileCTA from './components/MobileCTA';
@@ -53,7 +52,6 @@ const App = () => {
         <Videos />
         <Depoimentos />
         <Localizacao />
-        <Contato />
       </main>
       <Footer />
       <WhatsAppFloat />
