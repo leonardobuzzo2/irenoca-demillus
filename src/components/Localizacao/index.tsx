@@ -25,13 +25,13 @@ const channels = [
     icon: <FaShoppingBag />,
     label: 'Mercado Livre',
     desc: 'irenocademillus',
-    href: 'https://www.mercadolivre.com.br/perfil/irenocademillus',
+    href: 'https://lista.mercadolivre.com.br/_CustId_226992186_PrCategId_AD',
   },
   {
     icon: <FaShoppingBag />,
     label: 'Shopee',
     desc: 'irenocademillus',
-    href: 'https://shopee.com.br/irenocademillus',
+    href: 'https://shopee.com.br/irenoca_demillus10?entryPoint=ShopBySearch&searchKeyword=irenocademillus',
   },
 ];
 

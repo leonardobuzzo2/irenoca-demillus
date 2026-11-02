@@ -23,7 +23,7 @@ const Footer = () => {
             <a href="https://www.tiktok.com/@irenoca.demillus" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
               <FaTiktok />
             </a>
-            <a href="https://www.mercadolivre.com.br/perfil/irenocademillus" target="_blank" rel="noopener noreferrer" aria-label="Mercado Livre">
+            <a href="https://lista.mercadolivre.com.br/_CustId_226992186_PrCategId_AD" target="_blank" rel="noopener noreferrer" aria-label="Mercado Livre">
               <FaShoppingBag />
             </a>
           </div>

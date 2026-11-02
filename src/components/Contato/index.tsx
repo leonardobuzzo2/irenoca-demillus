@@ -37,10 +37,10 @@ const Contato = () => {
           <a href="https://www.facebook.com/ConsultoraIrenocaDeMillus" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaFacebookF /> Facebook
           </a>
-          <a href="https://www.mercadolivre.com.br/perfil/irenocademillus" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a href="https://lista.mercadolivre.com.br/_CustId_226992186_PrCategId_AD" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaShoppingBag /> Mercado Livre
           </a>
-          <a href="https://shopee.com.br/irenocademillus" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a href="https://shopee.com.br/irenoca_demillus10?entryPoint=ShopBySearch&searchKeyword=irenocademillus" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaShoppingBag /> Shopee
           </a>
         </div>
