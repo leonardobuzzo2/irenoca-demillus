@@ -33,12 +33,15 @@ const Sobre = () => {
 
         <div className={styles.textCol}>
           <span className={styles.eyebrow}>Nossa História</span>
-          <h2 className={styles.title}>Feito com amor por<br />Irene dos Santos Buzzo</h2>
+          <h2 className={styles.title}>Uma história de amor<br />pela moda íntima</h2>
           <p className={styles.text}>
-            Fundada em 2015 por Irene dos Santos Buzzo, a Irenoca Demillus nasceu da paixão pela moda íntima feminina. Inspirada na delicadeza e na força de cada mulher, a loja se tornou um espaço de confiança, elegância e carinho em plena Lapa, São Paulo.
+            Fundada em 2015 por Irene dos Santos Buzzo (revendedora autorizada), a Irenoca DeMillus nasceu da paixão pela moda íntima feminina e do desejo de oferecer muito mais do que produtos: proporcionar às mulheres uma experiência de cuidado, autoestima e bem-estar.
           </p>
           <p className={styles.text}>
-            Cada peça é escolhida com cuidado para que você se sinta única, confortável e confiante — porque beleza começa de dentro para fora.
+            Acreditamos que a lingerie vai muito além de uma peça de roupa. Ela representa feminilidade, liberdade e confiança — a conexão especial de cada mulher consigo mesma. Cada peça é escolhida com atenção e carinho, para acompanhá-la em todos os momentos da vida.
+          </p>
+          <p className={styles.text}>
+            Hoje, a Irenoca DeMillus inicia uma nova etapa no ambiente digital, levando todo esse carinho e dedicação para online. Atendimento personalizado pelo WhatsApp, pronta entrega e pedidos semanais — porque para nós, cada cliente é especial.
           </p>
 
           <div className={styles.pillars}>
