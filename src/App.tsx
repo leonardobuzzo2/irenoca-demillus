@@ -42,6 +42,18 @@ const App = () => {
 
   return (
     <>
+      <div style={{
+        background: 'var(--color-primary)',
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: '0.78rem',
+        fontWeight: 500,
+        padding: '0.5rem 1rem',
+        letterSpacing: '0.02em',
+        lineHeight: 1.5,
+      }}>
+        ⚠️ Somos uma <strong>revendedora independente</strong> de produtos DeMillus — não somos a loja oficial da marca.
+      </div>
       <Header />
       <main>
         <Hero />

@@ -35,7 +35,7 @@ const Sobre = () => {
           <span className={styles.eyebrow}>Nossa História</span>
           <h2 className={styles.title}>Uma história de amor<br />pela moda íntima</h2>
           <p className={styles.text}>
-            Fundada em 2015 por Irene dos Santos Buzzo (revendedora autorizada), a Irenoca DeMillus nasceu da paixão pela moda íntima feminina e do desejo de oferecer muito mais do que produtos: proporcionar às mulheres uma experiência de cuidado, autoestima e bem-estar.
+            Fundada em 2015 por Irene dos Santos Buzzo, a Irenoca DeMillus é uma revendedora independente de produtos DeMillus, nascida da paixão pela moda íntima feminina e do desejo de oferecer muito mais do que produtos: proporcionar às mulheres uma experiência de cuidado, autoestima e bem-estar.
           </p>
           <p className={styles.text}>
             Acreditamos que a lingerie vai muito além de uma peça de roupa. Ela representa feminilidade, liberdade e confiança — a conexão especial de cada mulher consigo mesma. Cada peça é escolhida com atenção e carinho, para acompanhá-la em todos os momentos da vida.
