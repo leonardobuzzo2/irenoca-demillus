@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { FaWhatsapp, FaBookOpen, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './styles.module.css';
 
@@ -11,9 +11,21 @@ const slides = [
 const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
   const next = useCallback(() => setCurrent(c => (c + 1) % slides.length), []);
   const prev = useCallback(() => setCurrent(c => (c - 1 + slides.length) % slides.length), []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 40) delta < 0 ? next() : prev();
+    touchStartX.current = null;
+  };
 
   useEffect(() => {
     if (paused) return;
@@ -22,7 +34,13 @@ const Hero = () => {
   }, [paused, next]);
 
   return (
-    <section className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+    <section
+      className={styles.hero}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {slides.map((slide, i) => (
         <div
           key={slide.src}
@@ -35,7 +53,7 @@ const Hero = () => {
 
       <div className={styles.content}>
         <h1 className={styles.title}>
-          Elegância que abraça,<br />conforto que transforma
+          Uma história de carinho que continua.<br />Agora, mais perto de você, onde estiver
         </h1>
         <p className={styles.subtitle}>
           Lingerie e roupas íntimas selecionadas com cuidado para você
