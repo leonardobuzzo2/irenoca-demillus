@@ -1,4 +1,4 @@
-import { FaWhatsapp, FaInstagram, FaShoppingBag } from 'react-icons/fa';
+import { FaWhatsapp, FaInstagram, FaShoppingBag, FaEnvelope } from 'react-icons/fa';
 import { FaTiktok } from 'react-icons/fa6';
 import styles from './styles.module.css';
 
@@ -32,6 +32,12 @@ const channels = [
     label: 'Shopee',
     desc: 'irenocademillus',
     href: 'https://shopee.com.br/irenoca_demillus10?entryPoint=ShopBySearch&searchKeyword=irenocademillus',
+  },
+  {
+    icon: <FaEnvelope />,
+    label: 'E-mail',
+    desc: 'irenocaprontaentrega@gmail.com',
+    href: 'mailto:irenocaprontaentrega@gmail.com',
   },
 ];
 

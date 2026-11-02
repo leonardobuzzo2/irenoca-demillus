@@ -75,6 +75,45 @@
   opacity: 0.85;
 }
 
+.emailBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.125rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--color-white);
+  padding: 1.125rem 2.5rem;
+  border-radius: var(--radius-button);
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 380px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.emailBtn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.emailBtn span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.emailBtn strong {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.emailBtn small {
+  font-size: 0.825rem;
+  opacity: 0.85;
+}
+
 .orLabel {
   margin: 2.25rem 0 1.25rem;
   font-size: 0.825rem;

@@ -1,4 +1,4 @@
-import { FaWhatsapp, FaInstagram, FaFacebookF, FaShoppingBag } from 'react-icons/fa';
+import { FaWhatsapp, FaInstagram, FaFacebookF, FaShoppingBag, FaEnvelope } from 'react-icons/fa';
 import { FaTiktok } from 'react-icons/fa6';
 import styles from './styles.module.css';
 
@@ -22,6 +22,17 @@ const Contato = () => {
           <span>
             <strong>Chamar pelo WhatsApp</strong>
             <small>(11) 94466-9394</small>
+          </span>
+        </a>
+
+        <a
+          href="mailto:irenocaprontaentrega@gmail.com"
+          className={styles.emailBtn}
+        >
+          <FaEnvelope className={styles.whatsappIcon} />
+          <span>
+            <strong>Enviar um E-mail</strong>
+            <small>irenocaprontaentrega@gmail.com</small>
           </span>
         </a>
 
