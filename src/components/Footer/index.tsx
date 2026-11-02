@@ -1,4 +1,5 @@
-import { FaInstagram, FaFacebookF, FaWhatsapp, FaShoppingBag, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaWhatsapp, FaShoppingBag } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa6';
 import styles from './styles.module.css';
 
 const Footer = () => {
@@ -16,8 +17,11 @@ const Footer = () => {
             <a href="https://www.facebook.com/ConsultoraIrenocaDeMillus" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FaFacebookF />
             </a>
-            <a href="https://wa.me/5511965729586" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <a href="https://wa.me/5511944669394" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <FaWhatsapp />
+            </a>
+            <a href="https://www.tiktok.com/@irenoca.demillus" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <FaTiktok />
             </a>
             <a href="https://www.mercadolivre.com.br/perfil/irenocademillus" target="_blank" rel="noopener noreferrer" aria-label="Mercado Livre">
               <FaShoppingBag />
@@ -39,18 +43,14 @@ const Footer = () => {
         </div>
 
         <div className={styles.address}>
-          <h4>Onde Estamos</h4>
-          <p>
-            <FaMapMarkerAlt className={styles.pin} />
-            Rua Doze de Outubro, 235, Loja 22<br />
-            Lapa — São Paulo, SP<br />
-            CEP 05073-001
-          </p>
-          <h4 className={styles.hoursTitle}>Horário</h4>
+          <h4>Atendimento Online</h4>
+          <p>Atendimento 100% online com todo o carinho e personalização que você merece.</p>
           <p className={styles.hoursText}>
-            Seg–Sex: 9h às 18h<br />
-            Sáb: 9h às 14h<br />
-            Dom: Fechado
+            <a href="https://wa.me/5511944669394" target="_blank" rel="noopener noreferrer">
+              WhatsApp: (11) 94466-9394
+            </a><br />
+            Produtos à pronta entrega<br />
+            Pedidos semanais
           </p>
         </div>
       </div>

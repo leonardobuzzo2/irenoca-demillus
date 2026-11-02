@@ -182,7 +182,7 @@ const Galeria = () => {
   }, [selected, closeLightbox, navigate]);
 
   const waLink = (name: string) =>
-    `https://wa.me/5511965729586?text=Ol%C3%A1!%20Tenho%20interesse%20em%3A%20${encodeURIComponent(name)}`;
+    `https://wa.me/5511944669394?text=Ol%C3%A1!%20Tenho%20interesse%20em%3A%20${encodeURIComponent(name)}`;
 
   return (
     <section id="galeria" className={styles.section}>

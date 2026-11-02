@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaInstagram, FaFacebookF, FaWhatsapp, FaShoppingBag, FaBars, FaTimes } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa6';
 import styles from './styles.module.css';
 
 const navLinks = [
@@ -66,8 +67,11 @@ const Header = () => {
             <a href="https://www.facebook.com/ConsultoraIrenocaDeMillus" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FaFacebookF />
             </a>
-            <a href="https://wa.me/5511965729586" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <a href="https://wa.me/5511944669394" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <FaWhatsapp />
+            </a>
+            <a href="https://www.tiktok.com/@irenoca.demillus" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <FaTiktok />
             </a>
             <a href="https://www.mercadolivre.com.br/perfil/irenocademillus" target="_blank" rel="noopener noreferrer" aria-label="Mercado Livre">
               <FaShoppingBag />

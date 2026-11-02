@@ -45,7 +45,7 @@ const Hero = () => {
             <FaBookOpen /> Veja o Catálogo
           </a>
           <a
-            href="https://wa.me/5511965729586"
+            href="https://wa.me/5511944669394"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.btnSecondary}

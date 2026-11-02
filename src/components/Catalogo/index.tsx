@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 // URL do PDF mais recente da DeMillus. Atualize quando sair nova edição.
 // Padrão: https://demillus.vestemuitomelhor.com.br/wp-content/uploads/AAAA/MM/AAAA-NN.pdf
-const REVISTA_PDF_URL = 'https://demillus.vestemuitomelhor.com.br/wp-content/uploads/2026/04/2026-09.pdf';
+const REVISTA_PDF_URL = '/catalogo-2026-17.pdf';
 const REVISTA_PAGE_URL = 'https://demillus.vestemuitomelhor.com.br/revista-digital/';
 
 const Catalogo = () => {
@@ -34,7 +34,7 @@ const Catalogo = () => {
               <FaBookOpen /> Ver todas as edições
             </a>
             <a
-              href="https://wa.me/5511965729586?text=Ol%C3%A1!%20Gostaria%20de%20receber%20o%20cat%C3%A1logo%20por%20WhatsApp."
+              href="https://wa.me/5511944669394?text=Ol%C3%A1!%20Gostaria%20de%20receber%20o%20cat%C3%A1logo%20por%20WhatsApp."
               target="_blank"
               rel="noopener noreferrer"
               className={styles.btnOutline}
