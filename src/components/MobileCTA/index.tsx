@@ -1,10 +1,10 @@
-import { FaDownload, FaWhatsapp } from 'react-icons/fa';
+import { FaBookOpen, FaWhatsapp } from 'react-icons/fa';
 import styles from './styles.module.css';
 
 const MobileCTA = () => (
   <div className={styles.bar}>
-    <a href="/catalogo.pdf" download className={styles.btnCatalogo}>
-      <FaDownload />
+    <a href="#catalogo" className={styles.btnCatalogo}>
+      <FaBookOpen />
       <span>Catálogo</span>
     </a>
     <a

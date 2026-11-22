@@ -2,159 +2,178 @@ import { useState, useEffect, useCallback } from 'react';
 import { FaWhatsapp, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './styles.module.css';
 
-type Category = 'todas' | 'feminino' | 'novidades' | 'fitness' | 'noite' | 'masculino';
+type Category = 'sutias' | 'calcinhas' | 'noite' | 'fitness' | 'bodies' | 'masculino';
+type Filter = 'todas' | 'novidades' | Category;
 
 interface Product {
   id: number;
   src: string;
   name: string;
   description: string;
-  category: Exclude<Category, 'todas'>;
-  tag: string;
+  category: Category;
+  novidade?: boolean;
 }
 
+const categoryLabels: Record<Category, string> = {
+  sutias:    'Sutiãs',
+  calcinhas: 'Calcinhas',
+  noite:     'Noite & Pijamas',
+  fitness:   'Fitness',
+  bodies:    'Bodies & Modeladores',
+  masculino: 'Masculino',
+};
+
 const products: Product[] = [
-  // ── Feminino ──────────────────────────────────────────────
   {
     id: 1,
-    src: '/images/sutia-magenta.jpg',
-    name: 'Sutiã Aninha — Magenta',
-    description: 'Sutiã Aninha Ultraleve em magenta vibrante. Conforto e elegância para o dia a dia.',
-    category: 'feminino',
-    tag: 'Feminino',
+    src: '/images/produtos/sutia-joli-demillus.jpg',
+    name: 'Sutiã Joli DeMillus',
+    description: 'Taças em espuma moldada com aro e bordado floral em tule, nas cores azul-frozen e rosa bebê.',
+    category: 'sutias',
+    novidade: true,
   },
   {
     id: 2,
-    src: '/images/sutia-preto.jpg',
-    name: 'Sutiã Aninha — Preto',
-    description: 'Clássico e sofisticado. Sutiã ultraleve perfeito para qualquer ocasião.',
-    category: 'feminino',
-    tag: 'Feminino',
+    src: '/images/produtos/sutia-louco-amor.jpg',
+    name: 'Sutiã Louco Amor',
+    description: 'Em renda elástica, com taças sem espuma e com aro, forro contrastante e um detalhe sensual no decote.',
+    category: 'sutias',
+    novidade: true,
   },
   {
     id: 3,
-    src: '/images/sutia-bege.jpg',
-    name: 'Sutiã Aninha — Bege Rosado',
-    description: 'Tom suave e natural, ideal para o uso diário com total discrição.',
-    category: 'feminino',
-    tag: 'Feminino',
+    src: '/images/produtos/sutia-demillus-miracle.jpg',
+    name: 'Sutiã DeMillus Miracle',
+    description: 'Romântico e delicado, com taças em espuma moldada com aro e renda elástica na cor pérola.',
+    category: 'sutias',
   },
-  // ── Novidades ─────────────────────────────────────────────
   {
     id: 4,
-    src: '/images/sutia-argent.jpg',
-    name: 'Sutiã Argent',
-    description: 'Lançamento exclusivo com design refinado e alto conforto. Novidade da coleção.',
-    category: 'novidades',
-    tag: 'Novidades',
+    src: '/images/produtos/sutia-basico-plus-ultraleve.jpg',
+    name: 'Sutiã Básico Plus Ultraleve',
+    description: 'Da coleção Ultraleve, sem costura, sem espuma, sem aro e sem fecho, com alças reguláveis de 15 mm para mais sustentação.',
+    category: 'sutias',
   },
   {
     id: 5,
-    src: '/images/sutia-sonata-vermelho.jpg',
-    name: 'Sutiã Sonata — Chic Red',
-    description: 'Vermelho vibrante para quem não tem medo de ousar. Tamanhos 48 a 56.',
-    category: 'novidades',
-    tag: 'Novidades',
+    src: '/images/produtos/fio-dental-xamego.jpg',
+    name: 'Fio-dental Xamego',
+    description: 'Todo em renda elástica, sem elástico na cintura e com cavas em elástico leve, disponível em várias cores.',
+    category: 'calcinhas',
+    novidade: true,
   },
   {
     id: 6,
-    src: '/images/sutia-sonata-verde.jpg',
-    name: 'Sutiã Sonata — Verde Esmeralda',
-    description: 'Verde esmeralda elegante e moderno. Um dos destaques da nova coleção.',
-    category: 'novidades',
-    tag: 'Novidades',
+    src: '/images/produtos/biquini-bicolor.jpg',
+    name: 'Biquíni Bicolor',
+    description: 'Em tule elástico transparente com frente forrada em malha 100% algodão e detalhes contrastantes.',
+    category: 'calcinhas',
   },
-  // ── Fitness ───────────────────────────────────────────────
   {
     id: 7,
-    src: '/images/fitness-top.jpg',
-    name: 'Top Stadium Ultraleve',
-    description: 'Top esportivo com tecnologia de alto desempenho. Ideal para treinos intensos.',
-    category: 'fitness',
-    tag: 'Fitness',
+    src: '/images/produtos/biquini-basico-ultraleve.jpg',
+    name: 'Biquíni Básico Ultraleve',
+    description: 'Da coleção Ultraleve, sem costura, com cintura levemente baixa e elástico suave nas cavas.',
+    category: 'calcinhas',
   },
   {
     id: 8,
-    src: '/images/fitness-legging-preta.jpg',
-    name: 'Legging Bio Ultraleve — Preto',
-    description: 'Legging com fio Amni Soul Eco, cintura canelada. Conforto e sustentação.',
-    category: 'fitness',
-    tag: 'Fitness',
+    src: '/images/produtos/shortdoll-demillus-touch.jpg',
+    name: 'Shortdoll DeMillus Touch',
+    description: 'Todo em renda elástica com transparência, com taças duplas, abertura frontal, alças finas e short curtinho.',
+    category: 'noite',
+    novidade: true,
   },
   {
     id: 9,
-    src: '/images/fitness-legging-verde.jpg',
-    name: 'Legging Bio Ultraleve — Verde',
-    description: 'Leveza e mobilidade para qualquer atividade. Tecido de alta elasticidade.',
-    category: 'fitness',
-    tag: 'Fitness',
+    src: '/images/produtos/pijama-longo-purisme.jpg',
+    name: 'Pijama Longo Purisme',
+    description: 'Blusa de manga longa em malha 100% algodão e calça estampada em malha de poliéster e viscose, com elástico interno na cintura.',
+    category: 'noite',
+    novidade: true,
   },
-  // ── Noite ─────────────────────────────────────────────────
   {
     id: 10,
-    src: '/images/camisola-full.jpg',
-    name: 'Camisola Di Carla',
-    description: 'Camisola delicada para noites especiais. Tecido leve, macio e feminino.',
+    src: '/images/produtos/pijama-feminino-legging.jpg',
+    name: 'Pijama Feminino Legging',
+    description: 'Blusa em malha 100% algodão com as costas mais compridas e calça estampada em moletinho leve, com versão menina para combinar.',
     category: 'noite',
-    tag: 'Noite & Pijamas',
+    novidade: true,
   },
   {
     id: 11,
-    src: '/images/camisola-ferveur.jpg',
-    name: 'Camisola Ferveur',
-    description: 'Lançamento da linha noite. Sofisticada e confortável para noites perfeitas.',
-    category: 'noite',
-    tag: 'Noite & Pijamas',
+    src: '/images/produtos/blusa-ermitage.jpg',
+    name: 'Blusa Ermitage',
+    description: 'Em microfibra de poliéster, com tecido respirável e toque macio para treinar com conforto.',
+    category: 'fitness',
   },
   {
     id: 12,
-    src: '/images/camisola-ferveur2.jpg',
-    name: 'Camisola Ferveur — Rosa',
-    description: 'Delicadeza em tons suaves. Perfeita para presentear ou se presentear.',
-    category: 'noite',
-    tag: 'Noite & Pijamas',
+    src: '/images/produtos/bermuda-velvette-ultraleve.jpg',
+    name: 'Bermuda Velvette Ultraleve',
+    description: 'Em microfibra elástica Ultraleve, sem costura nas laterais e com canelado confortável na cintura.',
+    category: 'fitness',
   },
-  // ── Masculino (Zeus) ──────────────────────────────────────
   {
     id: 13,
-    src: '/images/zeus-boxer-preto.jpg',
-    name: 'Boxer Bio Esportiva — Preto',
-    description: 'Fio Amni Soul Eco com alta elasticidade e resistência. Linha Zeus masculina.',
-    category: 'masculino',
-    tag: 'Masculino',
+    src: '/images/produtos/legging-voragem-ultraleve.jpg',
+    name: 'Legging Voragem Ultraleve',
+    description: 'Sem costura, com textura em canelado diagonal e canelado confortável na cintura e no punho da bainha.',
+    category: 'fitness',
   },
   {
     id: 14,
-    src: '/images/zeus-boxer-vinho.jpg',
-    name: 'Boxer Bio Esportiva — Vinho',
-    description: 'Microfilamento ultraleve para máximo conforto no dia a dia.',
-    category: 'masculino',
-    tag: 'Masculino',
+    src: '/images/produtos/body-vectra-ultraleve.jpg',
+    name: 'Body Vectra Ultraleve',
+    description: 'Sem espuma e sem aro, com canelado de alta compressão no abdômen que suaviza as medidas da cintura.',
+    category: 'bodies',
+    novidade: true,
   },
   {
     id: 15,
-    src: '/images/zeus-boxer-azul.jpg',
-    name: 'Boxer Bio Esportiva — Azul',
-    description: 'Tecnologia esportiva com estilo. O melhor da linha Zeus DeMillus.',
+    src: '/images/produtos/body-ternesse.jpg',
+    name: 'Body Ternesse',
+    description: 'Em elastano control com detalhes em renda elástica, moderada compressão e fecho entre as pernas.',
+    category: 'bodies',
+    novidade: true,
+  },
+  {
+    id: 16,
+    src: '/images/produtos/bermuda-alta-modellare.jpg',
+    name: 'Bermuda Alta Modellare',
+    description: 'Modelador de cintura alta em canelado duplo com alta compressão e barbatanas que evitam que a cintura enrole.',
+    category: 'bodies',
+  },
+  {
+    id: 17,
+    src: '/images/produtos/bermuda-estampada-zeus.jpg',
+    name: 'Bermuda Estampada Zeus',
+    description: 'Em microfibra de poliéster, com bolsos nas laterais e nas costas e cós com elástico e amarração ajustável.',
     category: 'masculino',
-    tag: 'Masculino',
+  },
+  {
+    id: 18,
+    src: '/images/produtos/boxer-linhas-ultraleve.jpg',
+    name: 'Boxer Linhas Ultraleve',
+    description: 'Em microfibra elástica Ultraleve, sem costura nas laterais, com alta elasticidade e resistência.',
+    category: 'masculino',
   },
 ];
 
-const filters: { key: Category; label: string }[] = [
-  { key: 'todas',    label: 'Todas' },
-  { key: 'feminino', label: 'Feminino' },
-  { key: 'novidades',label: 'Novidades' },
-  { key: 'fitness',  label: 'Fitness' },
-  { key: 'noite',    label: 'Noite & Pijamas' },
-  { key: 'masculino',label: 'Masculino' },
+const filters: { key: Filter; label: string }[] = [
+  { key: 'todas',     label: 'Todas' },
+  { key: 'novidades', label: 'Novidades' },
+  ...(Object.keys(categoryLabels) as Category[]).map(key => ({ key, label: categoryLabels[key] })),
 ];
 
+const matches = (p: Product, filter: Filter) =>
+  filter === 'todas' || (filter === 'novidades' ? !!p.novidade : p.category === filter);
+
 const Galeria = () => {
-  const [active, setActive]     = useState<Category>('todas');
+  const [active, setActive]     = useState<Filter>('todas');
   const [selected, setSelected] = useState<Product | null>(null);
 
-  const filtered = active === 'todas' ? products : products.filter(p => p.category === active);
+  const filtered = products.filter(p => matches(p, active));
 
   const openLightbox  = (p: Product) => setSelected(p);
   const closeLightbox = useCallback(() => setSelected(null), []);
@@ -191,15 +210,17 @@ const Galeria = () => {
           <span className={styles.eyebrow}>Produtos DeMillus</span>
           <h2 className={styles.title}>Nossa Galeria</h2>
           <p className={styles.subtitle}>
-            Confira nossa seleção por categoria. Clique em qualquer peça para ver os detalhes.
+            Peças da coleção atual da DeMillus. Escolha uma categoria e clique em qualquer peça para ver os detalhes.
           </p>
         </div>
 
-        <div className={styles.filters}>
+        <div className={styles.filters} role="group" aria-label="Filtrar por categoria">
           {filters.map(({ key, label }) => (
             <button
               key={key}
+              type="button"
               className={`${styles.filterBtn} ${active === key ? styles.filterActive : ''}`}
+              aria-pressed={active === key}
               onClick={() => setActive(key)}
             >
               {label}
@@ -211,20 +232,30 @@ const Galeria = () => {
           {filtered.map(product => (
             <button
               key={product.id}
+              type="button"
               className={styles.card}
               onClick={() => openLightbox(product)}
             >
               <div className={styles.imageWrap}>
-                <img src={product.src} alt={product.name} className={styles.image} loading="lazy" />
+                <img
+                  src={product.src}
+                  alt={product.name}
+                  className={styles.image}
+                  loading="lazy"
+                  width={736}
+                  height={900}
+                />
+                {product.novidade && <span className={styles.badge}>Novidade</span>}
                 <div className={styles.cardOverlay}>
                   <span className={styles.cardOverlayText}>Ver detalhes</span>
                 </div>
               </div>
               <div className={styles.info}>
-                <span className={styles.tag}>{product.tag}</span>
+                <span className={styles.tag}>{categoryLabels[product.category]}</span>
                 <h3 className={styles.productName}>{product.name}</h3>
                 <div className={styles.cta}>
-                  <FaWhatsapp /> Tenho interesse
+                  <FaWhatsapp aria-hidden="true" />
+                  <span>Tenho interesse</span>
                 </div>
               </div>
             </button>
@@ -232,9 +263,8 @@ const Galeria = () => {
         </div>
       </div>
 
-      {/* Lightbox */}
       {selected && (
-        <div className={styles.lightboxBackdrop} onClick={closeLightbox} role="dialog" aria-modal="true">
+        <div className={styles.lightboxBackdrop} onClick={closeLightbox} role="dialog" aria-modal="true" aria-label={selected.name}>
           <div className={styles.lightbox} onClick={e => e.stopPropagation()}>
             <button className={styles.lbClose} onClick={closeLightbox} aria-label="Fechar">
               <FaTimes />
@@ -248,11 +278,14 @@ const Galeria = () => {
             </button>
 
             <div className={styles.lbImageCol}>
-              <img src={selected.src} alt={selected.name} className={styles.lbImage} />
+              <img src={selected.src} alt={selected.name} className={styles.lbImage} width={736} height={900} />
             </div>
 
             <div className={styles.lbInfo}>
-              <span className={styles.lbTag}>{selected.tag}</span>
+              <span className={styles.lbTag}>
+                {categoryLabels[selected.category]}
+                {selected.novidade && ' · Novidade'}
+              </span>
               <h3 className={styles.lbName}>{selected.name}</h3>
               <p className={styles.lbDesc}>{selected.description}</p>
 

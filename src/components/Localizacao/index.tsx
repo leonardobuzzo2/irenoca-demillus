@@ -34,8 +34,8 @@ const groups = [
       {
         icon: <FaTiktok />,
         label: 'TikTok',
-        desc: '@irenoca.demillus',
-        href: 'https://www.tiktok.com/@irenoca.demillus',
+        desc: 'Nossa loja no TikTok Shop',
+        href: 'https://vt.tiktok.com/ZSs1TAjRy/',
       },
     ],
   },

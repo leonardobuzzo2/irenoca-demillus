@@ -1,47 +1,83 @@
-import { FaDownload, FaWhatsapp, FaBookOpen } from 'react-icons/fa';
+import { FaDownload, FaWhatsapp, FaBookOpen, FaExternalLinkAlt } from 'react-icons/fa';
+import { edicoesRevista, edicaoAtual, REVISTA_TODAS_EDICOES_URL } from '../../data/revista';
 import styles from './styles.module.css';
 
-// URL do PDF mais recente da DeMillus. Atualize quando sair nova edição.
-// Padrão: https://demillus.vestemuitomelhor.com.br/wp-content/uploads/AAAA/MM/AAAA-NN.pdf
-const REVISTA_PDF_URL = '/catalogo-2026-17.pdf';
-const REVISTA_PAGE_URL = 'https://demillus.vestemuitomelhor.com.br/revista-digital/';
+const WHATSAPP_REVISTA_URL =
+  'https://wa.me/5511944669394?text=Ol%C3%A1!%20Gostaria%20de%20receber%20o%20cat%C3%A1logo%20por%20WhatsApp.';
 
 const Catalogo = () => {
   return (
     <section id="catalogo" className={styles.section}>
       <div className={styles.inner}>
-        <div className={styles.content}>
+        <header className={styles.header}>
           <span className={styles.eyebrow}>Novidades da estação</span>
           <h2 className={styles.title}>Revista Digital</h2>
           <p className={styles.text}>
-            Descubra as novas coleções e tendências da DeMillus disponíveis aqui na Irenoca Demillus. Nossa revista digital traz uma seleção refinada de lingeries, fitness, pijamas e muito mais.
+            Folheie a revista DeMillus, escolha suas peças favoritas e faça seu pedido com a Irenoca Demillus. Baixe o PDF ou veja online a edição atual e a próxima.
           </p>
-          <div className={styles.buttons}>
-            <a
-              href={REVISTA_PDF_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnWhite}
-            >
-              <FaDownload /> Baixar Edição Atual (PDF)
-            </a>
-            <a
-              href={REVISTA_PAGE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnOutlineLight}
-            >
-              <FaBookOpen /> Ver todas as edições
-            </a>
-            <a
-              href="https://wa.me/5511944669394?text=Ol%C3%A1!%20Gostaria%20de%20receber%20o%20cat%C3%A1logo%20por%20WhatsApp."
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnOutline}
-            >
-              <FaWhatsapp /> Receber pelo WhatsApp
-            </a>
-          </div>
+        </header>
+
+        <div className={styles.grid}>
+          {edicoesRevista.map(edicao => {
+            const atual = edicao.id === edicaoAtual.id;
+            return (
+              <article key={edicao.id} className={styles.card}>
+                <div className={styles.coverWrap}>
+                  <img
+                    src={edicao.capa}
+                    alt={`Capa da revista DeMillus ${edicao.titulo}`}
+                    width={750}
+                    height={1046}
+                    loading="lazy"
+                    decoding="async"
+                    className={styles.cover}
+                  />
+                </div>
+                <div className={styles.info}>
+                  <span className={atual ? styles.badgeAtual : styles.badge}>{edicao.rotulo}</span>
+                  <h3 className={styles.cardTitle}>{edicao.titulo}</h3>
+                  <p className={styles.cardSubtitle}>{edicao.subtitulo}</p>
+                  <div className={styles.cardButtons}>
+                    <a
+                      href={edicao.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.btnPrimary}
+                    >
+                      <FaDownload aria-hidden="true" /> Baixar PDF
+                    </a>
+                    <a
+                      href={edicao.folhearUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.btnSecondary}
+                    >
+                      <FaExternalLinkAlt aria-hidden="true" /> Folhear online
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className={styles.buttons}>
+          <a
+            href={WHATSAPP_REVISTA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.btnWhite}
+          >
+            <FaWhatsapp aria-hidden="true" /> Receber pelo WhatsApp
+          </a>
+          <a
+            href={REVISTA_TODAS_EDICOES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.btnOutline}
+          >
+            <FaBookOpen aria-hidden="true" /> Ver todas as edições
+          </a>
         </div>
       </div>
     </section>

@@ -46,6 +46,7 @@ const App = () => {
         background: 'var(--color-primary)',
         color: '#fff',
         textAlign: 'center',
+        textWrap: 'balance',
         fontSize: '0.78rem',
         fontWeight: 500,
         padding: '0.5rem 1rem',

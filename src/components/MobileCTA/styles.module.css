@@ -21,7 +21,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 1rem;
+    min-height: 58px;
+    padding: 0 1rem;
     font-size: 0.9rem;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
@@ -39,7 +40,7 @@
   }
 
   .btnWhatsapp {
-    background-color: #25D366;
+    background-color: #1A7F4B;
     color: var(--color-white);
   }
 }

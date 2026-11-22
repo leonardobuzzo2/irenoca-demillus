@@ -20,7 +20,7 @@ const Footer = () => {
             <a href="https://wa.me/5511944669394" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <FaWhatsapp />
             </a>
-            <a href="https://www.tiktok.com/@irenoca.demillus" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <a href="https://vt.tiktok.com/ZSs1TAjRy/" target="_blank" rel="noopener noreferrer" aria-label="Loja no TikTok Shop">
               <FaTiktok />
             </a>
             <a href="https://lista.mercadolivre.com.br/_CustId_226992186_PrCategId_AD" target="_blank" rel="noopener noreferrer" aria-label="Mercado Livre">

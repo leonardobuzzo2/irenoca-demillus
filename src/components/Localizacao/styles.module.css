@@ -92,6 +92,10 @@
   background: var(--color-primary-soft);
 }
 
+.groupItem > div {
+  min-width: 0;
+}
+
 .groupItemIcon {
   color: var(--color-primary);
   font-size: 1rem;
@@ -113,6 +117,7 @@
 .groupItemSmall {
   font-size: 0.7rem;
   color: var(--color-gray);
+  overflow-wrap: anywhere;
 }
 
 .groupDivider {
@@ -129,5 +134,11 @@
 
   .groups {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    padding: 0 1.25rem;
   }
 }

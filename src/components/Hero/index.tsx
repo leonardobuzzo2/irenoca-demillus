@@ -1,34 +1,52 @@
-import { useState, useEffect, useCallback, useRef, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, useRef, type CSSProperties, type ReactNode } from 'react';
 import { FaWhatsapp, FaBookOpen, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styles from './styles.module.css';
 
 type Slide = {
   src: string;
   position: string;
+  mobileSrc?: string;
+  mobilePosition?: string;
   headline: ReactNode;
   subtitle: string;
 };
 
 const slides: Slide[] = [
   {
-    src: '/banner-loja.jpg',
+    src: '/images/loja-araras.jpg',
     position: 'center',
-    headline: <>Uma história de carinho<br />que continua.</>,
+    mobileSrc: '/images/loja-provador.jpg',
+    mobilePosition: 'center',
+    headline: <>Uma história de carinho <br />que continua.</>,
     subtitle: 'Agora, mais perto de você, onde estiver',
   },
   {
     src: '/images/campanha1.jpg',
-    position: 'left 20%',
-    headline: <>Lingerie que abraça<br />cada curva com delicadeza.</>,
+    position: '20% 25%',
+    mobileSrc: '/images/campanha1-mobile.jpg',
+    mobilePosition: 'center top',
+    headline: <>Lingerie que abraça <br />cada curva com delicadeza.</>,
     subtitle: 'Porque toda mulher merece se sentir especial — por dentro e por fora',
   },
   {
     src: '/images/campanha2.jpg',
-    position: 'right 20%',
-    headline: <>Conforto, estilo<br />e feminilidade em cada peça.</>,
+    position: '60% 25%',
+    mobileSrc: '/images/campanha2-mobile.jpg',
+    mobilePosition: 'center top',
+    headline: <>Conforto, estilo <br />e feminilidade em cada peça.</>,
     subtitle: 'Escolhidas com carinho para acompanhar você em todos os momentos',
   },
 ];
+
+const slideStyle = (slide: Slide) => {
+  const style: Record<string, string> = {
+    '--slide-bg': `url('${slide.src}')`,
+    '--slide-pos': slide.position,
+  };
+  if (slide.mobileSrc) style['--slide-bg-mobile'] = `url('${slide.mobileSrc}')`;
+  if (slide.mobilePosition) style['--slide-pos-mobile'] = slide.mobilePosition;
+  return style as CSSProperties;
+};
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
@@ -45,7 +63,10 @@ const Hero = () => {
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
     const delta = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(delta) > 40) delta < 0 ? next() : prev();
+    if (Math.abs(delta) > 40) {
+      if (delta < 0) next();
+      else prev();
+    }
     touchStartX.current = null;
   };
 
@@ -67,7 +88,7 @@ const Hero = () => {
         <div
           key={slide.src}
           className={`${styles.slide} ${i === current ? styles.slideActive : ''}`}
-          style={{ backgroundImage: `url('${slide.src}')`, backgroundPosition: slide.position }}
+          style={slideStyle(slide)}
         />
       ))}
 

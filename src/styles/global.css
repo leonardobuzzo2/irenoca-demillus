@@ -11,16 +11,27 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--color-bg);
   color: var(--color-dark);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Playfair Display', serif;
+}
+
+h1, h2, h3 {
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 a {
@@ -41,6 +52,6 @@ button {
 /* Mobile sticky CTA bar offset */
 @media (max-width: 768px) {
   body {
-    padding-bottom: 58px;
+    padding-bottom: calc(58px + env(safe-area-inset-bottom));
   }
 }

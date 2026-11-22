@@ -34,7 +34,7 @@
 .subtitle {
   color: var(--color-gray);
   font-size: 1rem;
-  max-width: 540px;
+  max-width: 560px;
   margin: 0 auto;
   line-height: 1.7;
 }
@@ -59,6 +59,7 @@
   cursor: pointer;
   transition: all 0.2s;
   font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
 }
 
 .filterBtn:hover {
@@ -75,7 +76,7 @@
 /* Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.75rem;
 }
 
@@ -87,6 +88,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   border-radius: var(--radius-card);
   overflow: hidden;
   box-shadow: var(--shadow-default);
@@ -105,14 +107,15 @@
 .imageWrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
-  background-color: var(--color-primary-soft);
+  aspect-ratio: 9 / 11;
+  background-color: #E7E2DC;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   transition: transform 0.4s ease;
   display: block;
 }
@@ -121,9 +124,26 @@
   transform: scale(1.06);
 }
 
+.badge {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-button);
+  box-shadow: 0 2px 8px rgba(194, 46, 120, 0.3);
+}
+
 .cardOverlay {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background-color: rgba(194, 46, 120, 0.78);
   display: flex;
   align-items: center;
@@ -150,6 +170,7 @@
   flex-direction: column;
   gap: 0.3rem;
   flex: 1;
+  min-width: 0;
 }
 
 .tag {
@@ -158,6 +179,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-primary);
+  overflow-wrap: anywhere;
 }
 
 .productName {
@@ -165,14 +187,18 @@
   font-size: 1rem;
   font-weight: 700;
   color: var(--color-dark);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .cta {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 0.5rem;
-  color: #25D366;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  color: #1A7F4B;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -267,7 +293,7 @@
 .lbImageCol {
   flex: 1;
   min-width: 0;
-  background-color: var(--color-primary-soft);
+  background-color: #E7E2DC;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -279,6 +305,7 @@
   height: 100%;
   max-height: 90vh;
   object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
@@ -290,6 +317,7 @@
   flex-direction: column;
   gap: 0.75rem;
   overflow-y: auto;
+  min-width: 0;
 }
 
 .lbTag {
@@ -298,6 +326,7 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-primary);
+  overflow-wrap: anywhere;
 }
 
 .lbName {
@@ -306,6 +335,7 @@
   font-weight: 700;
   color: var(--color-dark);
   line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
 .lbDesc {
@@ -318,8 +348,10 @@
 .lbWhatsapp {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 0.5rem;
-  background-color: #25D366;
+  background-color: #1A7F4B;
   color: white;
   padding: 0.875rem 1.5rem;
   border-radius: var(--radius-button);
@@ -331,7 +363,7 @@
 }
 
 .lbWhatsapp:hover {
-  background-color: #1db954;
+  background-color: #156B3F;
   transform: translateY(-2px);
 }
 
@@ -352,10 +384,21 @@
   color: var(--color-primary);
 }
 
+@media (min-width: 769px) {
+  .lbArrowRight {
+    right: calc(300px + 0.75rem);
+  }
+
+  .lbInfo {
+    margin-top: 3.25rem;
+    padding-top: 0.5rem;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .card:last-child:nth-child(3n + 1) {
@@ -364,47 +407,160 @@
 }
 
 @media (max-width: 768px) {
+  .inner {
+    padding: 0;
+  }
+
   .title {
     font-size: 1.8rem;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .header {
+    margin-bottom: 1.75rem;
+    padding: 0 1.25rem;
   }
 
   .filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 0.5rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    margin: 0 0 2rem;
+    padding: 0.25rem 1.25rem 0.5rem;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
   }
 
   .filterBtn {
+    flex-shrink: 0;
+    min-height: 44px;
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
   }
 
-  /* Lightbox stacks on mobile */
+  .filterBtn:last-child {
+    margin-right: 1.25rem;
+  }
+
+  .grid {
+    gap: 1rem;
+    padding: 0 1.25rem;
+  }
+
+  .info {
+    padding: 0.875rem 0.875rem 1rem;
+  }
+
+  .productName {
+    font-size: 0.95rem;
+  }
+
+  .cta {
+    font-size: 0.8rem;
+  }
+
+  .lightboxBackdrop {
+    padding: 0.75rem;
+  }
+
   .lightbox {
+    --lb-img-h: min(52vh, 110vw);
     flex-direction: column;
     max-height: 92vh;
+    overflow-y: auto;
   }
 
   .lbImageCol {
-    height: 45vw;
-    min-height: 200px;
+    flex: none;
+    height: var(--lb-img-h);
     width: 100%;
+  }
+
+  .lbImage {
+    object-fit: contain;
+    max-height: none;
+  }
+
+  .lbArrow {
+    top: calc(var(--lb-img-h) / 2);
   }
 
   .lbInfo {
     width: 100%;
-    padding: 1.5rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+    overflow-y: visible;
+  }
+
+  .lbName {
+    font-size: 1.3rem;
   }
 
   .lbArrowLeft  { left: 0.4rem; }
   .lbArrowRight { right: 0.4rem; }
+
+  .lbClose,
+  .lbArrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lbClose {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .lbCancel {
+    min-height: 44px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
+  .header {
+    padding: 0 1rem;
+  }
+
+  .filters {
+    margin: 0 0 1.75rem;
+    padding: 0.25rem 1rem 0.5rem;
+  }
+
+  .filterBtn:last-child {
+    margin-right: 1rem;
+  }
+
   .grid {
-    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0 1rem;
+  }
+
+  .info {
+    padding: 0.75rem 0.75rem 0.875rem;
+  }
+
+  .tag {
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+  }
+
+  .productName {
+    font-size: 0.875rem;
+  }
+
+  .cta {
+    font-size: 0.75rem;
+    gap: 0.3rem;
+  }
+
+  .badge {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.55rem;
   }
 }

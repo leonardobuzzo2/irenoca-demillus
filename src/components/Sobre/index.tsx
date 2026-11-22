@@ -24,7 +24,7 @@ const Sobre = () => {
     <section id="sobre" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.imageCol}>
-          <img src="/banner-loja.jpg" alt="Loja Irenoca Demillus" className={styles.image} />
+          <img src="/images/loja-araras-sobre.jpg" alt="Araras com sutiãs, calcinhas e meias na loja Irenoca Demillus" className={styles.image} />
           <div className={styles.badge}>
             <span className={styles.badgeNumber}>10+</span>
             <span className={styles.badgeLabel}>Anos de história</span>
@@ -35,13 +35,13 @@ const Sobre = () => {
           <span className={styles.eyebrow}>Nossa História</span>
           <h2 className={styles.title}>Uma história de amor<br />pela moda íntima</h2>
           <p className={styles.text}>
-            Fundada em 2015 por Irene dos Santos Buzzo, a Irenoca DeMillus é uma revendedora independente de produtos DeMillus, nascida da paixão pela moda íntima feminina e do desejo de oferecer muito mais do que produtos: proporcionar às mulheres uma experiência de cuidado, autoestima e bem-estar.
+            Fundada em 2015 por Irene dos Santos Buzzo, a Irenoca Demillus é uma revendedora independente de produtos DeMillus, nascida da paixão pela moda íntima feminina e do desejo de oferecer muito mais do que produtos: proporcionar às mulheres uma experiência de cuidado, autoestima e bem-estar.
           </p>
           <p className={styles.text}>
             Acreditamos que a lingerie vai muito além de uma peça de roupa. Ela representa feminilidade, liberdade e confiança — a conexão especial de cada mulher consigo mesma. Cada peça é escolhida com atenção e carinho, para acompanhá-la em todos os momentos da vida.
           </p>
           <p className={styles.text}>
-            Hoje, a Irenoca DeMillus inicia uma nova etapa no ambiente digital, levando todo esse carinho e dedicação para online. Atendimento personalizado pelo WhatsApp, pronta entrega e pedidos semanais — porque para nós, cada cliente é especial.
+            Hoje, a Irenoca Demillus inicia uma nova etapa no ambiente digital, levando todo esse carinho e dedicação para online. Atendimento personalizado pelo WhatsApp, pronta entrega e pedidos semanais — porque para nós, cada cliente é especial.
           </p>
 
           <div className={styles.pillars}>

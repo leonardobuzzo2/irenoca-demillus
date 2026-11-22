@@ -1,21 +1,44 @@
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaGoogle, FaExternalLinkAlt } from 'react-icons/fa';
 import styles from './styles.module.css';
 
-const depoimentos = [
+const GOOGLE_REVIEWS_URL =
+  'https://www.google.com/search?q=irenoca+demillus#lrd=0x94cef864068566cf:0xf4f108dfac2b9540,1,,,,';
+
+const avaliacoes = [
   {
-    name: 'Mariana S.',
-    city: 'São Paulo, SP',
-    text: 'Atendimento maravilhoso! A Irene tem um cuidado especial com cada cliente. As peças são de excelente qualidade e os preços são justos. Já indiquei para todas as minhas amigas!',
+    name: 'Màri S.',
+    stars: 5,
+    text: 'Ótimo atendimento, sempre atenciosos e me ajudam com minhas necessidades, sempre entregando produtos de qualidade. Compro sempre com eles!',
   },
   {
-    name: 'Fernanda L.',
-    city: 'Lapa, SP',
-    text: 'Compro há anos na Irenoca Demillus e nunca me decepcionei. A variedade é incrível e o atendimento personalizado faz toda a diferença. Me sinto especial em cada visita.',
+    name: 'Camila P.',
+    stars: 5,
+    text: 'Atendimento maravilhoso e personalizado! Comprei várias vezes e me surpreendi com a ótima qualidade dos produtos e atendimento impecável! Recomendo muito!',
   },
   {
-    name: 'Carla R.',
-    city: 'Pinheiros, SP',
-    text: 'Descobri a loja por indicação e me apaixonei! As lingeries são lindíssimas e o conforto é incomparável. A Irene realmente entende do que está fazendo. Voltarei sempre!',
+    name: 'Lindinês F.',
+    stars: 5,
+    text: 'Excelente!!! Além dos produtos serem maravilhosos em detalhes e qualidades, somos bem atendidos, o preço é justo pois estamos pagando por um produto com longa durabilidade. Irenoca parabéns pelo seu trabalho 😘👏👏👏',
+  },
+  {
+    name: 'Mayara M.',
+    stars: 5,
+    text: 'Irenoca, tem um excelente atendimento e atenção com seus produtos e clientes. Para quem busca lingerie a pronta entrega ou sob encomenda encontrou o lugar certo para realizar sua compra.',
+  },
+  {
+    name: 'Andreia A.',
+    stars: 5,
+    text: 'Gente que lugar lindo, com peças lindas e o atendimento maravilhoso. Certeza que voltarei outras vezes. Indico muitooooo.',
+  },
+  {
+    name: 'Ailson J.',
+    stars: 5,
+    text: 'Super indico, além do atendimento excelente, entrega rápida e preço justo.',
+  },
+  {
+    name: 'Aline C.',
+    stars: 5,
+    text: 'Atendimento maravilhoso e os produtos de ótima qualidade.',
   },
 ];
 
@@ -24,21 +47,38 @@ const Depoimentos = () => {
     <section id="depoimentos" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          <span className={styles.eyebrow}>O que dizem nossas clientes</span>
-          <h2 className={styles.title}>Depoimentos</h2>
+          <span className={styles.eyebrow}>Avaliações no Google</span>
+          <h2 className={styles.title}>O que dizem nossas clientes</h2>
+          <div className={styles.summary}>
+            <span className={styles.score}>4,7</span>
+            <div className={styles.summaryInfo}>
+              <div className={styles.stars} role="img" aria-label="Nota 4,7 de 5">
+                <FaStar /><FaStar /><FaStar /><FaStar /><FaStarHalfAlt />
+              </div>
+              <span className={styles.summaryText}>23 avaliações no Google</span>
+            </div>
+          </div>
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.allLink}
+          >
+            Ver todas no Google <FaExternalLinkAlt />
+          </a>
         </div>
         <div className={styles.grid}>
-          {depoimentos.map(({ name, city, text }) => (
-            <div key={name} className={styles.card}>
-              <div className={styles.stars}>
-                {[...Array(5)].map((_, i) => <FaStar key={i} />)}
+          {avaliacoes.map(({ name, stars, text }) => (
+            <figure key={name} className={styles.card}>
+              <div className={styles.stars} role="img" aria-label={`${stars} de 5 estrelas`}>
+                {[...Array(stars)].map((_, i) => <FaStar key={i} />)}
               </div>
-              <p className={styles.text}>"{text}"</p>
-              <div className={styles.author}>
+              <blockquote className={styles.text}>“{text}”</blockquote>
+              <figcaption className={styles.author}>
                 <span className={styles.name}>{name}</span>
-                <span className={styles.city}>{city}</span>
-              </div>
-            </div>
+                <span className={styles.source}><FaGoogle /> Avaliação no Google</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

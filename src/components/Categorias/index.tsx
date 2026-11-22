@@ -1,4 +1,4 @@
-import { FaHeart, FaMoon, FaSun, FaUmbrellaBeach } from 'react-icons/fa';
+import { FaHeart, FaFeatherAlt, FaMoon, FaUmbrellaBeach } from 'react-icons/fa';
 import styles from './styles.module.css';
 
 const categories = [
@@ -8,12 +8,12 @@ const categories = [
     description: 'Peças sofisticadas que valorizam cada curva com elegância e charme.',
   },
   {
-    icon: FaMoon,
+    icon: FaFeatherAlt,
     name: 'Conforto Diário',
     description: 'Sutiãs, calcinhas e bodies para o dia a dia com leveza e praticidade.',
   },
   {
-    icon: FaSun,
+    icon: FaMoon,
     name: 'Pijamas',
     description: 'Noites de sono com estilo, conforto e muita delicadeza.',
   },

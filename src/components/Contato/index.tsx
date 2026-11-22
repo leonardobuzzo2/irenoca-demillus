@@ -42,7 +42,7 @@ const Contato = () => {
           <a href="https://www.instagram.com/irenocademillus" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaInstagram /> Instagram
           </a>
-          <a href="https://www.tiktok.com/@irenoca.demillus" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a href="https://vt.tiktok.com/ZSs1TAjRy/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaTiktok /> TikTok
           </a>
           <a href="https://www.facebook.com/ConsultoraIrenocaDeMillus" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>

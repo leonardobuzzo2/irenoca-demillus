@@ -11,7 +11,8 @@
 
 .header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
 }
 
 .eyebrow {
@@ -29,6 +30,7 @@
   font-weight: 700;
   color: var(--color-dark);
   margin-bottom: 0.75rem;
+  overflow-wrap: break-word;
 }
 
 .subtitle {
@@ -39,11 +41,12 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
 }
 
 .videoCard {
+  min-width: 0;
   background-color: var(--color-bg);
   border-radius: var(--radius-card);
   overflow: hidden;
@@ -56,27 +59,184 @@
   box-shadow: 0 12px 32px rgba(194, 46, 120, 0.18);
 }
 
-.video {
-  width: 100%;
-  display: block;
+.player {
+  position: relative;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
   background-color: var(--color-dark);
+}
+
+.thumbButton {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.thumbButton:focus-visible {
+  outline: 3px solid var(--color-primary-light);
+  outline-offset: -3px;
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+}
+
+.thumbFramed {
+  transform: scale(1.14);
+}
+
+.playIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background-color: rgba(194, 46, 120, 0.9);
+  color: var(--color-white);
+  font-size: 1.4rem;
+  box-shadow: 0 6px 20px rgba(26, 26, 46, 0.35);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.playIcon svg {
+  margin-left: 4px;
+}
+
+.thumbButton:hover .playIcon,
+.thumbButton:focus-visible .playIcon {
+  background-color: var(--color-primary);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.duration {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(26, 26, 46, 0.85);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .videoTitle {
   padding: 0.875rem 1.125rem;
   font-weight: 500;
   font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--color-dark);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.sizes {
+  margin-top: 4rem;
+  padding: 2.5rem;
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-card);
+}
+
+.sizesHeader {
+  max-width: 620px;
+  margin-bottom: 2rem;
+}
+
+.sizesTitle {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 0.5rem;
+  overflow-wrap: break-word;
+}
+
+.sizesText {
+  color: var(--color-gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.sizesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.sizes .videoCard {
+  background-color: var(--color-white);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    gap: 1.5rem;
+  }
+
+  .sizes {
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .grid,
+  .sizesGrid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+    margin: 0 auto;
   }
 
   .title {
     font-size: 1.8rem;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .sizes {
+    margin-top: 3rem;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .sizesTitle {
+    font-size: 1.45rem;
+  }
+
+  .playIcon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    padding: 0 1.25rem;
+  }
+
+  .sizes {
+    padding: 1.5rem 1rem;
   }
 }

@@ -114,7 +114,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #25D366;
+  background-color: #1A7F4B;
   color: white;
   padding: 0.625rem 1.125rem;
   border-radius: var(--radius-button);
@@ -125,7 +125,7 @@
 }
 
 .tooltipBtn:hover {
-  background-color: #1db954;
+  background-color: #156B3F;
 }
 
 @media (max-width: 768px) {
