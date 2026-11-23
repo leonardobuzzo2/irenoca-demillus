@@ -11,6 +11,9 @@ import Localizacao from './components/Localizacao';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import MobileCTA from './components/MobileCTA';
+import Tamanho from './components/Tamanho';
+import Sacola from './components/Sacola';
+import SacolaProvider from './context/SacolaProvider';
 
 const App = () => {
   useEffect(() => {
@@ -41,7 +44,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <SacolaProvider>
       <div style={{
         background: 'var(--color-primary)',
         color: '#fff',
@@ -61,6 +64,7 @@ const App = () => {
         <Sobre />
         <Categorias />
         <Galeria />
+        <Tamanho />
         <Catalogo />
         <Videos />
         <Depoimentos />
@@ -69,7 +73,8 @@ const App = () => {
       <Footer />
       <WhatsAppFloat />
       <MobileCTA />
-    </>
+      <Sacola />
+    </SacolaProvider>
   );
 };
 

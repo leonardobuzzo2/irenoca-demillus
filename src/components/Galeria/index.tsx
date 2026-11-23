@@ -1,20 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
-import { FaWhatsapp, FaTimes, FaChevronLeft, FaChevronRight, FaSyncAlt } from 'react-icons/fa';
-import Viewer360, { type Frame360 } from '../Viewer360';
+import { useState, useEffect, useCallback, type CSSProperties } from 'react';
+import { FaTimes, FaChevronLeft, FaChevronRight, FaSyncAlt, FaShoppingBag } from 'react-icons/fa';
+import type { Frame360 } from '../Viewer360';
+import DetalhePeca from './DetalhePeca';
+import { categoryLabels, slugDe, type Category, type Product } from './tipos';
+import { coresPorProduto } from '../../data/cores';
 import styles from './styles.module.css';
 
-type Category = 'sutias' | 'calcinhas' | 'noite' | 'fitness' | 'bodies' | 'masculino';
 type Filter = 'todas' | 'novidades' | 'giro' | Category;
-
-interface Product {
-  id: number;
-  src: string;
-  name: string;
-  description: string;
-  category: Category;
-  novidade?: boolean;
-  giro?: Frame360[];
-}
 
 const giro = (slug: string, labels: string[]): Frame360[] =>
   labels.map(label => ({
@@ -22,14 +14,7 @@ const giro = (slug: string, labels: string[]): Frame360[] =>
     label,
   }));
 
-const categoryLabels: Record<Category, string> = {
-  sutias:    'Sutiãs',
-  calcinhas: 'Calcinhas',
-  noite:     'Noite & Pijamas',
-  fitness:   'Fitness',
-  bodies:    'Bodies & Modeladores',
-  masculino: 'Masculino',
-};
+const MAX_BOLINHAS = 6;
 
 const products: Product[] = [
   {
@@ -116,6 +101,7 @@ const products: Product[] = [
     name: 'Blusa Ermitage',
     description: 'Em microfibra de poliéster, com tecido respirável e toque macio para treinar com conforto.',
     category: 'fitness',
+    grupoTamanho: 'superior',
   },
   {
     id: 12,
@@ -217,9 +203,6 @@ const Galeria = () => {
     };
   }, [selected, closeLightbox, navigate]);
 
-  const waLink = (name: string) =>
-    `https://wa.me/5511944669394?text=Ol%C3%A1!%20Tenho%20interesse%20em%3A%20${encodeURIComponent(name)}`;
-
   return (
     <section id="galeria" className={styles.section}>
       <div className={styles.inner}>
@@ -227,7 +210,7 @@ const Galeria = () => {
           <span className={styles.eyebrow}>Produtos DeMillus</span>
           <h2 className={styles.title}>Nossa Galeria</h2>
           <p className={styles.subtitle}>
-            Peças da coleção atual da DeMillus. Escolha uma categoria e clique em qualquer peça para ver os detalhes.
+            Peças da coleção atual da DeMillus. Abra uma peça, escolha a cor e o tamanho e monte sua sacolinha para pedir pelo WhatsApp.
           </p>
         </div>
 
@@ -246,7 +229,9 @@ const Galeria = () => {
         </div>
 
         <div className={styles.grid}>
-          {filtered.map(product => (
+          {filtered.map(product => {
+            const cores = coresPorProduto[slugDe(product)]?.cores ?? [];
+            return (
             <button
               key={product.id}
               type="button"
@@ -275,13 +260,30 @@ const Galeria = () => {
               <div className={styles.info}>
                 <span className={styles.tag}>{categoryLabels[product.category]}</span>
                 <h3 className={styles.productName}>{product.name}</h3>
+                {cores.length > 1 && (
+                  <span className={styles.dots} role="img" aria-label={`${cores.length} cores`}>
+                    {cores.slice(0, MAX_BOLINHAS).map(c => (
+                      <span
+                        key={c.codigo}
+                        className={styles.dot}
+                        style={{ '--swatch': c.hex } as CSSProperties}
+                        title={c.nome}
+                        aria-hidden="true"
+                      />
+                    ))}
+                    {cores.length > MAX_BOLINHAS && (
+                      <span className={styles.dotMore} aria-hidden="true">+{cores.length - MAX_BOLINHAS}</span>
+                    )}
+                  </span>
+                )}
                 <div className={styles.cta}>
-                  <FaWhatsapp aria-hidden="true" />
-                  <span>Tenho interesse</span>
+                  <FaShoppingBag aria-hidden="true" />
+                  <span>{cores.length > 1 ? 'Ver cores e tamanhos' : 'Escolher tamanho'}</span>
                 </div>
               </div>
             </button>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -299,47 +301,7 @@ const Galeria = () => {
               <FaChevronRight />
             </button>
 
-            <div className={styles.lbImageCol}>
-              {selected.giro ? (
-                <Viewer360
-                  key={selected.id}
-                  frames={selected.giro}
-                  alt={selected.name}
-                  className={styles.lbViewer}
-                />
-              ) : (
-                <img src={selected.src} alt={selected.name} className={styles.lbImage} width={736} height={900} />
-              )}
-            </div>
-
-            <div className={styles.lbInfo}>
-              <span className={styles.lbTag}>
-                {categoryLabels[selected.category]}
-                {selected.novidade && ' · Novidade'}
-              </span>
-              <h3 className={styles.lbName}>{selected.name}</h3>
-              <p className={styles.lbDesc}>{selected.description}</p>
-              {selected.giro && (
-                <p className={styles.lbGiroTip}>
-                  <FaSyncAlt aria-hidden="true" />
-                  Arraste a foto para ver a peça {selected.giro.map(f => `de ${f.label.toLowerCase()}`).join(', ').replace(/, ([^,]*)$/, ' e $1')}. Toque na lupa para ver os detalhes de perto.
-                </p>
-              )}
-
-              <a
-                href={waLink(selected.name)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.lbWhatsapp}
-                onClick={closeLightbox}
-              >
-                <FaWhatsapp /> Tenho interesse nessa peça
-              </a>
-
-              <button className={styles.lbCancel} onClick={closeLightbox}>
-                Fechar
-              </button>
-            </div>
+            <DetalhePeca key={selected.id} produto={selected} onClose={closeLightbox} />
           </div>
         </div>
       )}
