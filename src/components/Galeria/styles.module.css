@@ -309,6 +309,53 @@
   display: block;
 }
 
+.lbViewer {
+  aspect-ratio: 736 / 900;
+  height: auto;
+  max-height: 90vh;
+}
+
+.badgeGiro {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: rgba(26, 26, 46, 0.78);
+  color: var(--color-white);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-button);
+  backdrop-filter: blur(4px);
+}
+
+.badgeGiro svg {
+  font-size: 0.62rem;
+}
+
+.lbGiroTip {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: -0.5rem 0 1.25rem;
+  padding: 0.75rem 0.875rem;
+  border-radius: 10px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-dark);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.lbGiroTip svg {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--color-primary);
+}
+
 .lbInfo {
   width: 300px;
   flex-shrink: 0;
@@ -484,6 +531,12 @@
 
   .lbImage {
     object-fit: contain;
+    max-height: none;
+  }
+
+  .lbViewer {
+    aspect-ratio: auto;
+    height: 100%;
     max-height: none;
   }
 

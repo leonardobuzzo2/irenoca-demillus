@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { FaWhatsapp, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaWhatsapp, FaTimes, FaChevronLeft, FaChevronRight, FaSyncAlt } from 'react-icons/fa';
+import Viewer360, { type Frame360 } from '../Viewer360';
 import styles from './styles.module.css';
 
 type Category = 'sutias' | 'calcinhas' | 'noite' | 'fitness' | 'bodies' | 'masculino';
-type Filter = 'todas' | 'novidades' | Category;
+type Filter = 'todas' | 'novidades' | 'giro' | Category;
 
 interface Product {
   id: number;
@@ -12,7 +13,14 @@ interface Product {
   description: string;
   category: Category;
   novidade?: boolean;
+  giro?: Frame360[];
 }
+
+const giro = (slug: string, labels: string[]): Frame360[] =>
+  labels.map(label => ({
+    src: `/images/produtos/giro/${slug}-${label.toLowerCase()}.jpg`,
+    label,
+  }));
 
 const categoryLabels: Record<Category, string> = {
   sutias:    'Sutiãs',
@@ -35,6 +43,7 @@ const products: Product[] = [
   {
     id: 2,
     src: '/images/produtos/sutia-louco-amor.jpg',
+    giro: giro('sutia-louco-amor', ['Frente', 'Lado', 'Costas']),
     name: 'Sutiã Louco Amor',
     description: 'Em renda elástica, com taças sem espuma e com aro, forro contrastante e um detalhe sensual no decote.',
     category: 'sutias',
@@ -72,6 +81,7 @@ const products: Product[] = [
   {
     id: 7,
     src: '/images/produtos/biquini-basico-ultraleve.jpg',
+    giro: giro('basico-ultraleve', ['Frente', 'Costas']),
     name: 'Biquíni Básico Ultraleve',
     description: 'Da coleção Ultraleve, sem costura, com cintura levemente baixa e elástico suave nas cavas.',
     category: 'calcinhas',
@@ -117,6 +127,7 @@ const products: Product[] = [
   {
     id: 13,
     src: '/images/produtos/legging-voragem-ultraleve.jpg',
+    giro: giro('legging-voragem', ['Frente', 'Costas']),
     name: 'Legging Voragem Ultraleve',
     description: 'Sem costura, com textura em canelado diagonal e canelado confortável na cintura e no punho da bainha.',
     category: 'fitness',
@@ -140,6 +151,7 @@ const products: Product[] = [
   {
     id: 16,
     src: '/images/produtos/bermuda-alta-modellare.jpg',
+    giro: giro('bermuda-modellare', ['Frente', 'Costas']),
     name: 'Bermuda Alta Modellare',
     description: 'Modelador de cintura alta em canelado duplo com alta compressão e barbatanas que evitam que a cintura enrole.',
     category: 'bodies',
@@ -163,11 +175,16 @@ const products: Product[] = [
 const filters: { key: Filter; label: string }[] = [
   { key: 'todas',     label: 'Todas' },
   { key: 'novidades', label: 'Novidades' },
+  { key: 'giro',      label: 'Gire a peça' },
   ...(Object.keys(categoryLabels) as Category[]).map(key => ({ key, label: categoryLabels[key] })),
 ];
 
-const matches = (p: Product, filter: Filter) =>
-  filter === 'todas' || (filter === 'novidades' ? !!p.novidade : p.category === filter);
+const matches = (p: Product, filter: Filter) => {
+  if (filter === 'todas') return true;
+  if (filter === 'novidades') return !!p.novidade;
+  if (filter === 'giro') return !!p.giro;
+  return p.category === filter;
+};
 
 const Galeria = () => {
   const [active, setActive]     = useState<Filter>('todas');
@@ -246,6 +263,11 @@ const Galeria = () => {
                   height={900}
                 />
                 {product.novidade && <span className={styles.badge}>Novidade</span>}
+                {product.giro && (
+                  <span className={styles.badgeGiro}>
+                    <FaSyncAlt aria-hidden="true" /> Gire a peça
+                  </span>
+                )}
                 <div className={styles.cardOverlay}>
                   <span className={styles.cardOverlayText}>Ver detalhes</span>
                 </div>
@@ -278,7 +300,16 @@ const Galeria = () => {
             </button>
 
             <div className={styles.lbImageCol}>
-              <img src={selected.src} alt={selected.name} className={styles.lbImage} width={736} height={900} />
+              {selected.giro ? (
+                <Viewer360
+                  key={selected.id}
+                  frames={selected.giro}
+                  alt={selected.name}
+                  className={styles.lbViewer}
+                />
+              ) : (
+                <img src={selected.src} alt={selected.name} className={styles.lbImage} width={736} height={900} />
+              )}
             </div>
 
             <div className={styles.lbInfo}>
@@ -288,6 +319,12 @@ const Galeria = () => {
               </span>
               <h3 className={styles.lbName}>{selected.name}</h3>
               <p className={styles.lbDesc}>{selected.description}</p>
+              {selected.giro && (
+                <p className={styles.lbGiroTip}>
+                  <FaSyncAlt aria-hidden="true" />
+                  Arraste a foto para ver a peça {selected.giro.map(f => `de ${f.label.toLowerCase()}`).join(', ').replace(/, ([^,]*)$/, ' e $1')}. Toque na lupa para ver os detalhes de perto.
+                </p>
+              )}
 
               <a
                 href={waLink(selected.name)}
