@@ -73,6 +73,15 @@
   animation: fadeUp 0.8s 0.15s ease both;
 }
 
+.subtitleLine {
+  display: block;
+}
+
+.subtitleHighlight {
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
 .ctas {
   display: flex;
   gap: 1rem;

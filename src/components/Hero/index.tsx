@@ -8,7 +8,7 @@ type Slide = {
   mobileSrc?: string;
   mobilePosition?: string;
   headline: ReactNode;
-  subtitle: string;
+  subtitle: ReactNode;
 };
 
 const slides: Slide[] = [
@@ -18,7 +18,19 @@ const slides: Slide[] = [
     mobileSrc: '/images/loja-provador.jpg',
     mobilePosition: 'center',
     headline: <>Uma história de carinho <br />que continua.</>,
-    subtitle: 'Agora, mais perto de você, onde estiver',
+    subtitle: (
+      <>
+        <span className={styles.subtitleLine}>
+          Hoje, a Irenoca Demillus inicia uma nova etapa no ambiente digital,
+        </span>
+        <span className={styles.subtitleLine}>
+          levando todo esse carinho e dedicação para online.
+        </span>
+        <span className={`${styles.subtitleLine} ${styles.subtitleHighlight}`}>
+          Atendimento personalizado pelo WhatsApp, pronta entrega e pedidos semanais.
+        </span>
+      </>
+    ),
   },
   {
     src: '/images/campanha1.jpg',
