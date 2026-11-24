@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/termos-de-uso", "destination": "/index.html" },
+    { "source": "/politica-de-privacidade", "destination": "/index.html" }
+  ]
+}

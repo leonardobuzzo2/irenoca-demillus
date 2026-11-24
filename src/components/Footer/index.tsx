@@ -1,5 +1,6 @@
-import { FaInstagram, FaFacebookF, FaWhatsapp, FaShoppingBag } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaWhatsapp, FaShoppingBag, FaEnvelope, FaIdCard } from 'react-icons/fa';
 import { FaTiktok } from 'react-icons/fa6';
+import { CONTATO } from '../../data/contato';
 import styles from './styles.module.css';
 
 const Footer = () => {
@@ -17,7 +18,7 @@ const Footer = () => {
             <a href="https://www.facebook.com/ConsultoraIrenocaDeMillus" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FaFacebookF />
             </a>
-            <a href="https://wa.me/5511944669394" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <a href={CONTATO.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <FaWhatsapp />
             </a>
             <a href="https://vt.tiktok.com/ZSs1TAjRy/" target="_blank" rel="noopener noreferrer" aria-label="Loja no TikTok Shop">
@@ -32,22 +33,35 @@ const Footer = () => {
         <div className={styles.links}>
           <h4>Links Rápidos</h4>
           <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#categorias">Categorias</a>
-            <a href="#galeria">Galeria</a>
-            <a href="#catalogo">Catálogo</a>
-            <a href="#videos">Vídeos</a>
-            <a href="#localizacao">Contato</a>
+            <a href="/#sobre">Sobre</a>
+            <a href="/#categorias">Categorias</a>
+            <a href="/#galeria">Galeria</a>
+            <a href="/#catalogo">Catálogo</a>
+            <a href="/#videos">Vídeos</a>
+            <a href="/#localizacao">Contato</a>
           </nav>
         </div>
 
         <div className={styles.address}>
           <h4>Atendimento Online</h4>
           <p>Atendimento 100% online com todo o carinho e personalização que você merece.</p>
+          <ul className={styles.contactList}>
+            <li>
+              <FaWhatsapp className={styles.contactIcon} aria-hidden="true" />
+              <a href={CONTATO.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                {CONTATO.telefone}
+              </a>
+            </li>
+            <li>
+              <FaEnvelope className={styles.contactIcon} aria-hidden="true" />
+              <a href={`mailto:${CONTATO.email}`}>{CONTATO.email}</a>
+            </li>
+            <li>
+              <FaIdCard className={styles.contactIcon} aria-hidden="true" />
+              <span>CNPJ: {CONTATO.cnpj}</span>
+            </li>
+          </ul>
           <p className={styles.hoursText}>
-            <a href="https://wa.me/5511944669394" target="_blank" rel="noopener noreferrer">
-              WhatsApp: (11) 94466-9394
-            </a><br />
             Produtos à pronta entrega<br />
             Pedidos semanais
           </p>
@@ -55,7 +69,11 @@ const Footer = () => {
       </div>
 
       <div className={styles.bottom}>
-        <p>&copy; {new Date().getFullYear()} Irenoca Demillus. Todos os direitos reservados.</p>
+        <p>&copy; {new Date().getFullYear()} Irenoca Demillus · CNPJ {CONTATO.cnpj}. Todos os direitos reservados.</p>
+        <nav className={styles.legal} aria-label="Informações legais">
+          <a href="/termos-de-uso">Termos de Uso</a>
+          <a href="/politica-de-privacidade">Política de Privacidade</a>
+        </nav>
         <p>Desenvolvido com ♥ para Irene dos Santos Buzzo</p>
       </div>
     </footer>

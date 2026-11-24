@@ -115,6 +115,58 @@
   display: block !important;
 }
 
+.contactList {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.contactList a {
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.2s;
+}
+
+.contactList a:hover {
+  color: var(--color-primary-light);
+}
+
+.contactIcon {
+  color: var(--color-primary-light);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.legal {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.legal a {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.62);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.legal a:hover {
+  color: var(--color-primary-light);
+}
+
 .bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   max-width: 1200px;
@@ -208,5 +260,15 @@
     text-align: center;
     padding: 1.25rem 1.5rem;
     gap: 0.5rem;
+  }
+
+  .legal {
+    justify-content: center;
+  }
+
+  .legal a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 }
