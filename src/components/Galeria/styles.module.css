@@ -828,10 +828,120 @@
   text-decoration: underline;
 }
 
+/* Compre o conjunto */
+.conjunto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background-color: var(--color-primary-soft);
+  border: 1.5px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.conjuntoOn {
+  border-color: rgba(194, 46, 120, 0.35);
+}
+
+.conjuntoEyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+}
+
+.conjuntoPeca {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.conjuntoNome {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-dark);
+  overflow-wrap: anywhere;
+}
+
+.conjuntoTexto {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--color-gray);
+}
+
+.conjuntoVer {
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.conjuntoToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 52px;
+  padding: 0.6rem 0.85rem;
+  border: 1.5px solid rgba(194, 46, 120, 0.25);
+  border-radius: 12px;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.conjuntoToggle:hover,
+.conjuntoOn .conjuntoToggle {
+  border-color: var(--color-primary);
+}
+
+.conjuntoToggle input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.conjuntoCor {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 400;
+  color: var(--color-gray);
+}
+
+/* A caixa do conjunto tem recuo próprio: em telas bem estreitas, 3 tamanhos por linha */
+@media (max-width: 400px) {
+  .conjunto {
+    padding: 0.875rem 0.75rem;
+  }
+
+  .conjunto .size {
+    flex-basis: calc(33.333% - 0.4rem);
+  }
+}
+
 .swatch:focus-visible,
 .size:focus-visible,
 .lbAdd:focus-visible,
 .lbWhatsappLink:focus-visible,
+.conjuntoVer:focus-visible,
+.conjuntoToggle input:focus-visible,
 .sizeHelp a:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;

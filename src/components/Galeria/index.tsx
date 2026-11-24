@@ -1,12 +1,13 @@
-import { useState, useEffect, useCallback, type CSSProperties } from 'react';
+import { useState, useEffect, useCallback, useRef, type CSSProperties } from 'react';
 import { FaTimes, FaChevronLeft, FaChevronRight, FaSyncAlt, FaShoppingBag } from 'react-icons/fa';
 import type { Frame360 } from '../Viewer360';
 import DetalhePeca from './DetalhePeca';
 import { categoryLabels, slugDe, type Category, type Product } from './tipos';
 import { coresPorProduto } from '../../data/cores';
+import { conjuntoPorProduto } from '../../data/conjuntos';
 import styles from './styles.module.css';
 
-type Filter = 'todas' | 'novidades' | 'giro' | Category;
+type Filter = 'todas' | 'novidades' | 'giro' | 'conjuntos' | Category;
 
 const giro = (slug: string, labels: string[]): Frame360[] =>
   labels.map(label => ({
@@ -162,6 +163,7 @@ const filters: { key: Filter; label: string }[] = [
   { key: 'todas',     label: 'Todas' },
   { key: 'novidades', label: 'Novidades' },
   { key: 'giro',      label: 'Gire a peça' },
+  { key: 'conjuntos', label: 'Conjuntos' },
   ...(Object.keys(categoryLabels) as Category[]).map(key => ({ key, label: categoryLabels[key] })),
 ];
 
@@ -169,6 +171,7 @@ const matches = (p: Product, filter: Filter) => {
   if (filter === 'todas') return true;
   if (filter === 'novidades') return !!p.novidade;
   if (filter === 'giro') return !!p.giro;
+  if (filter === 'conjuntos') return !!conjuntoPorProduto[slugDe(p)];
   return p.category === filter;
 };
 
@@ -180,6 +183,16 @@ const Galeria = () => {
 
   const openLightbox  = (p: Product) => setSelected(p);
   const closeLightbox = useCallback(() => setSelected(null), []);
+  const abrirPeca     = useCallback((slug: string) => {
+    const peca = products.find(p => slugDe(p) === slug);
+    if (peca) setSelected(peca);
+  }, []);
+
+  // No celular a janela inteira rola: ao trocar de peça, volta para o topo.
+  const lightboxRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    lightboxRef.current?.scrollTo({ top: 0 });
+  }, [selected?.id]);
 
   const navigate = useCallback((dir: 1 | -1) => {
     if (!selected) return;
@@ -289,7 +302,7 @@ const Galeria = () => {
 
       {selected && (
         <div className={styles.lightboxBackdrop} onClick={closeLightbox} role="dialog" aria-modal="true" aria-label={selected.name}>
-          <div className={styles.lightbox} onClick={e => e.stopPropagation()}>
+          <div className={styles.lightbox} ref={lightboxRef} onClick={e => e.stopPropagation()}>
             <button className={styles.lbClose} onClick={closeLightbox} aria-label="Fechar">
               <FaTimes />
             </button>
@@ -301,7 +314,7 @@ const Galeria = () => {
               <FaChevronRight />
             </button>
 
-            <DetalhePeca key={selected.id} produto={selected} onClose={closeLightbox} />
+            <DetalhePeca key={selected.id} produto={selected} onClose={closeLightbox} onAbrirPeca={abrirPeca} />
           </div>
         </div>
       )}
