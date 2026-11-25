@@ -51,13 +51,14 @@ const App = () => {
         color: '#fff',
         textAlign: 'center',
         textWrap: 'balance',
-        fontSize: '0.78rem',
+        fontSize: 'clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem)',
         fontWeight: 500,
-        padding: '0.5rem 1rem',
-        letterSpacing: '0.02em',
-        lineHeight: 1.5,
+        padding: '0.8rem 1rem',
+        letterSpacing: '0.01em',
+        lineHeight: 1.45,
+        borderBottom: '3px solid var(--color-accent)',
       }}>
-        ⚠️ Somos uma <strong>revendedora independente</strong> de produtos DeMillus — não somos a loja oficial da marca.
+        ⚠️ Somos uma <strong style={{ fontWeight: 700, textDecoration: 'underline', textDecorationColor: 'var(--color-accent)', textUnderlineOffset: '4px', textDecorationThickness: '2px' }}>revendedora independente</strong> de produtos DeMillus — <strong style={{ fontWeight: 700 }}>não somos a loja oficial da marca.</strong>
       </div>
       <Header />
       <main>
