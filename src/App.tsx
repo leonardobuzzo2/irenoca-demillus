@@ -54,7 +54,8 @@ const App = () => {
         fontSize: 'clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem)',
         fontWeight: 500,
         padding: '0.8rem 1rem',
-        letterSpacing: '0.01em',
+        letterSpacing: '0.04em',
+        textTransform: 'uppercase',
         lineHeight: 1.45,
         borderBottom: '3px solid var(--color-accent)',
       }}>
