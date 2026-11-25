@@ -17,7 +17,7 @@ const giro = (slug: string, labels: string[]): Frame360[] =>
 
 const MAX_BOLINHAS = 6;
 
-const products: Product[] = [
+export const products: Product[] = [
   {
     id: 1,
     src: '/images/produtos/sutia-joli-demillus.jpg',

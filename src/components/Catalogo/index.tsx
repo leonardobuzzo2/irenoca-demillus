@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import { FaDownload, FaWhatsapp, FaBookOpen, FaExternalLinkAlt } from 'react-icons/fa';
-import { edicoesRevista, edicaoAtual, REVISTA_TODAS_EDICOES_URL } from '../../data/revista';
+import { edicoesRevista, edicaoAtual, REVISTA_TODAS_EDICOES_URL, type EdicaoRevista } from '../../data/revista';
+import RevistaFlip from '../Revista';
 import styles from './styles.module.css';
 
 const WHATSAPP_REVISTA_URL =
   'https://wa.me/5511944669394?text=Ol%C3%A1!%20Gostaria%20de%20receber%20o%20cat%C3%A1logo%20por%20WhatsApp.';
 
 const Catalogo = () => {
+  const [aberta, setAberta] = useState<EdicaoRevista | null>(null);
+
   return (
+    <>
     <section id="catalogo" className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
@@ -46,14 +51,13 @@ const Catalogo = () => {
                     >
                       <FaDownload aria-hidden="true" /> Baixar PDF
                     </a>
-                    <a
-                      href={edicao.folhearUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      type="button"
+                      onClick={() => setAberta(edicao)}
                       className={styles.btnSecondary}
                     >
-                      <FaExternalLinkAlt aria-hidden="true" /> Folhear online
-                    </a>
+                      <FaBookOpen aria-hidden="true" /> Folhear aqui
+                    </button>
                   </div>
                 </div>
               </article>
@@ -76,11 +80,13 @@ const Catalogo = () => {
             rel="noopener noreferrer"
             className={styles.btnOutline}
           >
-            <FaBookOpen aria-hidden="true" /> Ver todas as edições
+            <FaExternalLinkAlt aria-hidden="true" /> Ver todas as edições
           </a>
         </div>
       </div>
     </section>
+    <RevistaFlip edicao={aberta} onClose={() => setAberta(null)} />
+    </>
   );
 };
 

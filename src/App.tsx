@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Sobre from './components/Sobre';
 import Categorias from './components/Categorias';
 import Galeria from './components/Galeria';
+import Quiz from './components/Quiz';
 import Catalogo from './components/Catalogo';
 import Videos from './components/Videos';
 import Depoimentos from './components/Depoimentos';
@@ -64,6 +65,7 @@ const App = () => {
         <Sobre />
         <Categorias />
         <Galeria />
+        <Quiz />
         <Tamanho />
         <Catalogo />
         <Videos />
